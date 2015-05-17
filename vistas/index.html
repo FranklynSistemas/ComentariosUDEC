@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{titulo}}</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+  <body>
+    <div class="Titulo" ><span><h1>{{titulo}}</h1></span></div>
+    <div align="center">
+    <form class="contact_form" id="contact_form" action="" >
+    <div> 
+    <table>
+        
+        <tr>
+          <td align="center"><input id="Nombre" name="Nombre" type="text" placeholder="Nombre de Usuario" required /></td>
+        </tr>
+        <tr>
+          <td><textarea id="m" name="message" cols="200" rows="6" placeholder="Escriba algun Comentario" required></textarea></td>
+          <td><button class="submit">Enviar</button></td>
+        </tr>
+        
+    </table>
+    </div> 
+    </form>
+    </div>
+    <div class="Comentarios">
+      
+      <ul id="messages">
+        
+        <li>
+          <h3>Cometario1</h3>
+          <span>Contenido del Comentario</span>
+          <br>
+          <span>1 <img src="img/like.png"></span>  <a href="">Me gusta</a>
+        </li>
+         <li>
+          <h3>Cometario2</h3>
+          <span>Contenido del Comentario</span>
+          <br>
+          <span>1 <img src="img/like.png"></span>  <a href="">Me gusta</a>
+        </li>
+         <li>
+          <h3>Cometario3</h3>
+          <span>Contenido del Comentario</span>
+          <br>
+          <span>1 <img src="img/like.png"></span>  <a href="">Me gusta</a>
+        </li>
+         <li>
+          <h3>Cometario4</h3>
+          <span>Contenido del Comentario</span>
+          <br>
+          <span>1 <img src="img/like.png"></span>  <a href="">Me gusta</a>
+        </li>
+         <li>
+          <h3>Cometario5</h3>
+          <span>Contenido del Comentario</span>
+          <br>
+          <span>1 <img src="img/like.png"></span>  <a href="">Me gusta</a>
+        </li>
+
+      </ul>
+
+    </div>
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      var socket = io();
+      $('form').submit(function(){
+        socket.emit('comentario', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('comentario', function(msg){
+        $('#messages').append($('<li>').text(msg));
+      });
+    </script>
+
+  </body>
+</html>
