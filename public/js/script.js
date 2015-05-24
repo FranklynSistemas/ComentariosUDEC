@@ -94,7 +94,8 @@ consumeServicios(1, "");
       return [ 
               this.usuario,
               this.comentario,
-              this.like
+              this.like,
+              this.fecha
              ];
     }
   }
@@ -108,7 +109,8 @@ consumeServicios(1, "");
       
         txt += "<li><h3>"+(datosPersona[0])+"<h3>";
         txt += "<span>"+(datosPersona[1])+"</span><br>";
-        txt += "<span> "+(datosPersona[2])+" <img src='img/like.png'>  <button id='e_"+i+"'>Me Gusta</button>";
+        txt += "<span> "+(datosPersona[2])+" <img src='img/like.png'>  <button id='e_"+i+"'>Me Gusta</button></span><br>";
+        txt +="------------------------------------------------------------------------------<span> "+(datosPersona[3])+"</span><br>";
         txt += "</li>"
       
   
