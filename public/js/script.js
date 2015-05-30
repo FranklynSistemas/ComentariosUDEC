@@ -103,7 +103,7 @@ consumeServicios(1, "");
   {
     var MeGusta = "Me Gusta";
     var txt = "<ul id='messages'>";
-    for(var i = 0; i < listadoDatos.length; i++)
+    for(var i = listadoDatos.length-1; i >= 0; i--)
     {
       datosPersona = listadoDatos[i].imprime();
       
@@ -170,7 +170,7 @@ consumeServicios(1, "");
      if(correcto)
     {
       var Fecha = new Date();
-      var FechaOrdenada = Fecha.getDate()+"/"+(Fecha.getMonth()+1)+"/"+Fecha.getFullYear();
+      var FechaOrdenada = Fecha.getDate()+"/"+(Fecha.getMonth()+1)+"/"+Fecha.getFullYear()+" "+Fecha.getHours()+":"+Fecha.getMinutes();
       var nuevoDato = {
                 usuario  :   valores[0], 
                 comentario :   valores[1], 
@@ -184,4 +184,46 @@ consumeServicios(1, "");
 
 
   }
+/*Captura el Enter*/
+  window.onkeydown = function(e)
+	{
+		var code = e.keyCode ? e.keyCode : e.which;
+		if(code == 13){
+			guardarDatos();
+		}
+
+	}
+
+var numPermitido = 10; 
+var Caracteres=0;
+var max=0;
+	$("#Mensaje").keydown(function() { 
+			ValidaCaracteres();
+		});
+	$("#Mensaje").keyup(function() { 
+			ValidaCaracteres();
+	});
+	function ValidaCaracteres(){
+		
+		Caracteres = $("#Mensaje").val().length;
+
+		if(Caracteres>numPermitido){
+			$("#Enviar").attr("disabled","disabled");
+			$("#Enviar").css({  background: "red" });
+		}else{
+			$("#Enviar").removeAttr("disabled");
+			$("#Enviar").css({  background: "#68b12f" });
+			max = numPermitido-Caracteres;
+		}
+		cuenta();
+
+	}
+
+	function cuenta(){
+				
+			$("#cantidad").html("Caracteres "+max);
+			console.log($("#Mensaje").val().length);
+		 
+	}
+
 });
